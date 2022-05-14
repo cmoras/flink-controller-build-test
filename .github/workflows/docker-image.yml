@@ -1,0 +1,23 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build-and-push:
+    name: Build Docker image and push to repositories
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v3
+    - name:  docker login
+      run: docker login -u clen -p vol7'mit
+    - name: build 
+      run: docker build .  --file Dockerfile --tag clen/flink-kubernetes-operator:latest
+    - name: docker push
+      run: docker push clen/flink-kubernetes-operator:latest
