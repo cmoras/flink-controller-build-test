@@ -22,12 +22,14 @@ on:
   push:
     branches:
       - main
+      - stage
       - 'release-*'
     tags:
       - 'release-*-rc*'
   pull_request:
     branches:
       - main
+      - stage
       - 'release-*'
 jobs:
   build_image:
@@ -47,7 +49,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.1GITHUB_TOKEN }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
